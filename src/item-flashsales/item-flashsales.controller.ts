@@ -8,10 +8,15 @@ import {
   Param,
   Delete,
   RequestTimeoutException,
+  UseGuards,
 } from '@nestjs/common';
 import { ItemFlashsalesService } from './item-flashsales.service';
 import { CreateItemFlashsaleDto } from './dto/create-item-flashsale.dto';
 import { UpdateItemFlashsaleDto } from './dto/update-item-flashsale.dto';
+
+
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/authorization/roles.guard';
 @Controller('item-flashsales')
 @ApiTags('Item Flashsale')
 export class ItemFlashsalesController {

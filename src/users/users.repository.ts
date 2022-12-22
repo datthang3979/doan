@@ -52,7 +52,6 @@ export class UsersRepository extends Repository<User> {
       .from(User)
       .where('id = :id', { id })
       .execute();
-    console.log(result);
     return result.affected;
   }
   async findByEmail(email: string) {

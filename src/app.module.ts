@@ -19,16 +19,19 @@ import { OrdersModule } from './orders/orders.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CronjobService } from './cronjob/cronjob.service';
 import { CronjobModule } from './cronjob/cronjob.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './authorization/roles.guard';
+
 // RolesGuard
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
       username: 'postgres',
-      password: 'postgres',
+      password: 'tuandat292',
       host: 'localhost',
       port: 5432,
-      database: 'ecommerce',
+      database: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
       logging: true,
@@ -41,12 +44,12 @@ import { CronjobModule } from './cronjob/cronjob.module';
         ignoreTLS: false,
         secure: false,
         auth: {
-          user: 'dat98@gmail.com',
-          pass: '123456',
+          user: 'bot.sendmail@gmail.com',
+          pass: 'botsendmail',
         },
       },
       defaults: {
-        from: '"Ecommerce" <Tuandat292@gmail.com>',
+        from: '"Postgres" <Tuandat292@gmail.com>',
       },
     }),
     ConfigModule.forRoot({
@@ -68,14 +71,15 @@ import { CronjobModule } from './cronjob/cronjob.module';
     VouchersModule,
     OrdersModule,
     CronjobModule,
+    AppModule,
   ],
   controllers: [AppController],
-  providers: [
+  providers: [ 
     AppService,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: RolesGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
     CronjobService,
   ],
 })

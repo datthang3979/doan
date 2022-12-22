@@ -14,6 +14,11 @@ class ItemOrder {
   quantity: number;
 }
 
+
+export enum Role {
+  User = "User"
+}
+
 export class CreateOrderDto {
   @IsString()
   @ApiProperty({ type: String })

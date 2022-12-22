@@ -2,6 +2,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString,  IsDateString } from 'class-validator';
 // import { ApiProperty}
+
+export enum Role{
+  Admin = 'Admin'
+}
 export class CreateFlashsaleDto {
   @IsString()
   @ApiProperty()

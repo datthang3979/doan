@@ -49,7 +49,6 @@ export class UploadsController {
     },
   })
   uploadImage(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
     return file;
   }
   
@@ -88,7 +87,6 @@ export class UploadsController {
     },
   })
   uploadImages(@UploadedFiles() files: Array<Express.Multer.File>) {
-    console.log(files);
     return files;
   }
 }

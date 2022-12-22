@@ -12,9 +12,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
-import { CreateOrderDto } from './dto/create-order.dto';
+import { CreateOrderDto, Role } from './dto/create-order.dto';
 import { CreateOrderDetailDto } from './dto/create-order-detail.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { Roles } from 'src/authorization/roles.decorator';
 
 
 @Controller('orders')
@@ -26,6 +27,7 @@ export class OrdersController {
   ) {}
 
   @Post()
+  @Roles(Role.User)
   // @ApiConsumes('multipart/form-data')
   // @FormDataRequest()
   create(@Body() createOrderDto: CreateOrderDto) {
@@ -56,12 +58,12 @@ export class OrdersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateOrderDto: UpdateOrderDto) {
+  update(@Param('id') id: string, @Body()  updateOrderDto: UpdateOrderDto) {
     return this.ordersService.update(id, updateOrderDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.ordersService.remove(id);
   }
 }

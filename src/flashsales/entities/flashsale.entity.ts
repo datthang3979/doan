@@ -9,6 +9,8 @@ import {
   OneToMany,
 } from 'typeorm';
 @Entity()
+
+
 export class Flashsale {
   @PrimaryGeneratedColumn('uuid')
   id: string;

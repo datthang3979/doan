@@ -84,8 +84,6 @@ export class ItemsService {
   }
   async updateQuantityAfterFlashsale(id: string, quantity: number) {
     const item = await this.findOne(id);
-    console.log(item);
-    
     const update = {
       ...item,
       quantity: item.quantity + quantity,

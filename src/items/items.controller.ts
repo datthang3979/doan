@@ -118,8 +118,6 @@ export class ItemsController {
   @Get('testupdateitem')
   async updateItem() {
     const items = await this.itemsService.findAll();
-    console.log(items);
-
     const timeNow = new Date();
     for (let index = 0; index < items.length; index++) {
       let itemId = (items[index].id);
@@ -140,7 +138,7 @@ export class ItemsController {
         .orderBy('item_flashsale.discount', 'DESC')
         .limit(1)
         .execute();
-      console.log(query);
+    
 
       if( query[0] ) {
         await this.itemsService.updateIsSaleTrue(itemId);
@@ -203,8 +201,6 @@ export class ItemsController {
     @Param('id') id: string,
     @Body() decreaseItemDto: DecreaseItemDto,
   ) {
-    console.log(decreaseItemDto);
-
     return this.itemsService.decreaseItemQuantity(id, decreaseItemDto);
   }
 }

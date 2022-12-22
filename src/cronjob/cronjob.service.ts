@@ -18,7 +18,7 @@ export class CronjobService {
   })
   async checkIsSaleItems() {
     const items = await this.itemsService.findAll();
-    console.log(items);
+
     
     const timeNow = new Date();
     for (let index = 0; index < items.length; index++) {
@@ -60,8 +60,6 @@ export class CronjobService {
     
     const last20Minutes = new Date();
     last20Minutes.setMinutes(last20Minutes.getMinutes() - 20)
-    console.log(last20Minutes);
-    
     const endedFlashsales = await getConnection()
       .createQueryBuilder() 
       .select('item_flashsale.itemId', 'itemId')
@@ -73,8 +71,7 @@ export class CronjobService {
       .andWhere('flashsale.endSale > :last20Minutes', {last20Minutes})
       .andWhere('item_flashsale.quantity != 0')
       .execute();
-    console.log(endedFlashsales);
-    console.log(now);
+  
     
     endedFlashsales.forEach(async (element) => {
       await this.itemsService.updateQuantityAfterFlashsale(

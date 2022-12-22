@@ -45,7 +45,6 @@ export class FlashsalesService {
     flashSale.flashSaleBanner.forEach(element => {
       fs.exists(element, function (exists) {
         if (exists) {
-          console.log('File exists. Deleting now ...');
           fs.unlinkSync(element);
         }
       });

@@ -6,6 +6,8 @@ import { Module } from '@nestjs/common';
 import { ItemFlashsalesService } from './item-flashsales.service';
 import { ItemFlashsalesController } from './item-flashsales.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   controllers: [ItemFlashsalesController],

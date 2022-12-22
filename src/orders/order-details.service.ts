@@ -43,12 +43,10 @@ export class OrderDetailsService {
       .orderBy('item_flashsale.discount', 'DESC')
       .limit(1)
       .execute();
-    console.log(query);
 
     const itemFlashsale = query[0]
       ? await this.itemFlashsalesService.findOne(query[0].item_flashsale)
       : null;
-    console.log(itemFlashsale);
 
     //# check quantity
     if (
@@ -88,7 +86,6 @@ export class OrderDetailsService {
       price: query[0] ? query[0].realPrice : item.price,
       order,
     });
-    console.log(orderDetail);
     await this.orderDetailsRepository.save(orderDetail);
 
     //# update total for order
@@ -99,6 +96,5 @@ export class OrderDetailsService {
       .from(OrderDetail, 'order_detail')
       .innerJoin('order_detail.order', 'order')
       .execute();
-    console.log(query2);
   }
 }

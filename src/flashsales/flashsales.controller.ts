@@ -17,6 +17,7 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { Role } from './../users/entities/user.entity';
 import { Author } from '../authorization/author.decorator';
+import { Roles } from 'src/authorization/roles.decorator';
 @Controller('flashsales')
 @ApiTags('Flash Sale')
 @ApiConsumes('multipart/form-data')
@@ -24,6 +25,7 @@ export class FlashsalesController {
   constructor(private readonly flashsalesService: FlashsalesService) {}
 
   @Post()
+  @Roles(Role.Admin)
   // @UseGuards(AuthGuard(), RolesGuard),
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(

@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import * as speakeasy from 'speakeasy';
 
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -46,6 +47,15 @@ export class AuthService {
     const access_token: string = await this.jwtService.sign({ payload });
     return `jwt: ${access_token}`;
   }
+
+  // async guEst(createAuthDto: CreateAuthDto){
+  //   const { email, password } = createAuthDto;
+  //   const account = await this.usersService.findByEmail(email);
+  //   const check = await bcrypt.compare(password, account.password);
+  //   if (!account || !check){
+  //   return 'you are viewing without login'
+  //   }
+  // }
 
   // async verifyEmail(email: string, name: string) {
   //   const token = await sign(

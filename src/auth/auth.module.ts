@@ -8,7 +8,8 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { NestjsFormDataModule } from 'nestjs-form-data';
-import { PassportModule } from '@nestjs/passport';
+import {  PassportModule } from '@nestjs/passport';
+
 @Module({
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
@@ -24,6 +25,6 @@ import { PassportModule } from '@nestjs/passport';
     SendmailModule,
     NestjsFormDataModule,
   ],
-  // exports: [JwtStrategy],
+   exports: [JwtStrategy],
 })
 export class AuthModule {}

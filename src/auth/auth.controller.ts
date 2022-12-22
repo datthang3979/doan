@@ -74,6 +74,12 @@ export class AuthController {
     return this.authService.signIn(createAuthDto);
   }
 
+  // @Post('Guest ')
+  // guEst(@Body() createAuthDto: CreateAuthDto){
+  //   return this.authService.guEst(createAuthDto);
+  // }
+
+
   @Post('forgetpassword')
   async forgetPassword(@Body() forgetPasswordDto: ForgetPasswordDto) {
     try {
@@ -94,7 +100,7 @@ export class AuthController {
 
 
 
-  @UseGuards(AuthGuard(), RolesGuard)
+  @UseGuards(AuthGuard('Jwt'), RolesGuard)
   @ApiBearerAuth()
   @Roles(Role.User, Role.Admin)
   @Get('test')

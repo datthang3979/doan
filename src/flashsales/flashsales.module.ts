@@ -4,6 +4,7 @@ import { FlashsalesRepository } from './flashsales.repository';
 import { Module } from '@nestjs/common';
 import { FlashsalesService } from './flashsales.service';
 import { FlashsalesController } from './flashsales.controller';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   controllers: [FlashsalesController],
